@@ -7,6 +7,11 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import store from './store'
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default.css'
+
+
 
 
 
@@ -14,6 +19,7 @@ import store from './store'
 Vue.config.productionTip = false
 Vue.use(firestorePlugin)
 Vue.use(BootstrapVue)
+Vue.use(VueMaterial)
 
 new Vue({
   router,

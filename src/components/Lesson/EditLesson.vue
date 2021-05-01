@@ -38,7 +38,7 @@
           >
             <b-form-input v-model.trim="lesson.picture"></b-form-input>
           </b-form-group>
-      <p>Upload image in your device</p>
+      <p>Or upload image in your device</p>
       <input type="file" @change="previewImage" accept="image/*" >
     </div>
     <div>
@@ -119,7 +119,7 @@ export default {
   methods: {
      previewImage(event) {
       this.uploadValue=0;
-      //this.picture=null;
+      this.picture=null;
       this.imageData = event.target.files[0];
     },
 

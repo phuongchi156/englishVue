@@ -36,6 +36,7 @@
             </div> -->
     <router-view/>
   </div>
+    <Footer /> 
   </div>
 </template>
 
@@ -44,13 +45,13 @@
 //import firebase from "firebase/app";
 //import firebase from '../firebase'
 import "firebase/auth";
-
-//import Upload from "./components/HoTro/Upload"
+import Footer from "./views/Footer"
 export default {
 
   name: 'app',
   components:{
     //Upload
+    Footer,
   },
   
 }
