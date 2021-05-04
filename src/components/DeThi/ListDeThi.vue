@@ -1,5 +1,68 @@
 <template>
-<div>
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Bài kiểm tra <small>Danh sách đề bài</small></h2>
+        <!-- <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="#">Settings 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Settings 2</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+        </ul> -->
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Mã đề</th>
+                    <th>Mô tả</th>
+                    <th>Trạng thái</th>
+                    <th>Xóa</th>
+                    <th> Sửa</th>
+                    <th>Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr v-for="item in dethi" :key="item.key">
+                        <th scope="row">{{item.key}}</th>
+                        <td>{{item.mota}}</td>
+                        <td v-if="item.trangthai === true">
+                                <i class="btn btn-success btn-xs">Đang mở</i></td>
+                                <td v-if="item.trangthai != true">
+                                <i class="btn btn-warning btn-xs">Đã đóng</i>
+                        </td>
+            <td><button class="delete" @click="delDethi(item.key)"><i class="fa fa-close"></i></button></td>
+          <td><button class="edit" @click="editDethi(item.key)"><i class="fa fa-edit"></i></button></td>
+          <td><b-button variant="outline-primary" @click="detail(item.key)">Chi tiết</b-button></td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <router-link to="/adddethi" class="btn btn-success"><i class="fa fa-plus"></i> Thêm đề bài</router-link>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- <div>
   <h1>Danh sách đề thi</h1>
   <td><button class="box"><i class="fa fa-plus"></i><a href="/adddethi">Thêm mới</a></button></td>
     <table class="animate__animated animate__fadeInTopLeft">
@@ -11,6 +74,7 @@
             <th>Trạng thái</th>
             <th>Xóa</th>
             <th> Sửa</th>
+            <th>Chi tiết</th>
         </tr>
         <tr v-for="item in dethi" :key="item.key">
             <th>{{item.mota}}</th>
@@ -20,9 +84,10 @@
             <th>{{item.trangthai}}</th>
             <td><button class="delete" @click="delDethi(item.key)"><i class="fa fa-close"></i></button></td>
           <td><button class="edit" @click="editDethi(item.key)"><i class="fa fa-edit"></i></button></td>
+          <td><b-button variant="outline-primary" @click="detail(item.key)">Chi tiết</b-button></td>
         </tr>
     </table>
-</div>
+</div> -->
 </template>
 
 <script>
@@ -61,7 +126,10 @@ export default {
   },
   methods: {
     editDethi (key) {
-      router.push({ name: 'editdethi', params: { id: key }})
+      router.push({ name: 'editdethi', params: { id: key }});
+    },
+    detail (key){
+      router.push({ name: 'dethidetail', params: { id: key }})
     },
      delDethi(key){
       this.ref.doc(key).delete().then(() => {

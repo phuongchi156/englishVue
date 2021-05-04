@@ -97,9 +97,9 @@ const routes = [
     path: '/listdethi',
     name: 'listdethi',
     component: ListDeThi,
-    meta: {
-      requiresAuth: true
-    }
+    // meta: {
+    //   requiresAuth: true
+    // }
   },
   {
     path: '/admin',
@@ -110,17 +110,33 @@ const routes = [
     path: '/adddethi',
     name: 'adddethi',
     component: () => import("../components/DeThi/AddDeThi.vue"),
-    meta: {
-      requiresAuth: true
-    }
+    // meta: {
+    //   requiresAuth: true
+    // }
   },
   {
     path: '/editdethi/:id',
     name: 'editdethi',
     component: () => import("../components/DeThi/EditDeThi.vue"),
-    meta: {
-      requiresAuth: true
-    }
+    // meta: {
+    //   requiresAuth: true
+    // }
+  },
+  {
+    path : '/dethidetail/:id',
+    name : 'dethidetail',
+    component : () => import("../components/DeThi/DeThiDetail.vue"),
+    // meta: {
+    //   requiresAuth: true
+    // }
+  },
+  {
+    path : '/addquiz/:id',
+    name : 'addquiz',
+    component : () => import("../components/DeThi/AddQuiz.vue"),
+    // meta: {
+    //   requiresAuth: true
+    // }
   },
   {
     path: '/listketqua',
@@ -219,12 +235,28 @@ const routes = [
     // }
   },
   {
-    path : '/editnew',
-    name : 'editnew',
-    component : () => import("../components/New/EditNew.vue"),
-    meta: {
-      requiresAuth: true
-    }
+    path : '/lessondetail/:id',
+    name : 'lessondetail',
+    component : () => import("../components/User/Baihoc/LessonDetail.vue"),
+    // meta: {
+    //   requiresAuth: true
+    // }
+  },
+  {
+    path : '/dotest/:id',
+    name : 'dotest',
+    component : () => import("../components/User/KiemTra/DoTest.vue"),
+    // meta: {
+    //   requiresAuth: true
+    // }
+  },
+  {
+    path : '/listtest/',
+    name : 'listtest',
+    component : () => import("../components/User/KiemTra/ListTest.vue"),
+    // meta: {
+    //   requiresAuth: true
+    // }
   },
 ]
 
