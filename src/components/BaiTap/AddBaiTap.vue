@@ -76,16 +76,16 @@
               v-model.trim="baitap.cap"
             ></b-form-input>
           </b-form-group>
-                    <b-form-group
+          <b-form-group
             id="fieldsetHorizontal"
             horizontal
             :label-cols="4"
             breakpoint="md"
-            label="Nhập bài học liên quan"
+            label="Chọn bài học"
           >
-            <b-form-input
-              v-model.trim="baitap.id_bh"
-            ></b-form-input>
+       <b-form-select v-model="baitap.id_bh">
+         <b-form-select-option v-for="item in lesson" :key="item.key" :value="item.key">{{item.name}}</b-form-select-option>
+       </b-form-select>
           </b-form-group>
           <b-button type="submit" variant="primary">Save</b-button>
         </b-form>
@@ -105,14 +105,41 @@ export default {
     return {
       ref: firebase.firestore().collection("baitap"),
       baitap: {},
+      detail: '',
+        name :{label: 'Tên bài học', sortable: true, 'class': 'text-center'},
+        picture :"",
+        rank :"",
+        status: "",
+        type : "",
+        video : "",
+      lesson: [],
+      errors: [],
+      refL: firebase.firestore().collection('lesson'),
     };
+  },
+  created () {
+    this.refL.onSnapshot((querySnapshot) => {
+      this.lesson = [];
+      querySnapshot.forEach((doc) => {
+        this.lesson.push({
+          key: doc.id,
+          detail: doc.data().detai,
+          name : doc.data().name,
+          picture : doc.data().picture,
+          type : doc.data().type,
+          rank : doc.data().rank,
+          status : doc.data().status,
+          video : doc.data().video
+        });
+            
+      });
+    });
   },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-
       this.ref
-        .add(this.question)
+        .add(this.baitap)
         .then((docRef) => {
           this.baitap.noidung = "";
           this.baitap.ch1 = "";
@@ -124,7 +151,7 @@ export default {
           this.baitap.id_bh = "";
           console.log(docRef.id);
           router.push({
-            name: "listbaihoc",
+            name: "listbaitap",
           });
         })
         .catch((error) => {

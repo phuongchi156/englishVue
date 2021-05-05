@@ -150,17 +150,17 @@ const routes = [
     path: '/listbaitap',
     name: 'listbaitap',
     component: () => import("../components/BaiTap/ListBaiTap.vue"),
-    meta: {
-      requiresAuth: true
-    }
+    // meta: {
+    //   requiresAuth: true
+    // }
   },
   {
     path: '/addbaitap',
     name: 'addbaitap',
     component: () => import("../components/BaiTap/AddBaiTap.vue"),
-    meta: {
-      requiresAuth: true
-    }
+    // meta: {
+    //   requiresAuth: true
+    // }
   },
   {
     path: '/editbaitap/:id',

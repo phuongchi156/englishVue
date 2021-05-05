@@ -4,8 +4,8 @@
       <h2>
         Danh sách bài tập
       </h2>
-  <td><button class="box"><i class="fa fa-plus"></i><a href="/addbaitap">Thêm mới</a></button></td>
-    <table id="customers" class="animate__animated animate__fadeInTopLeft">
+  <td><button class="box"><i class="fa fa-plus"></i><router-link to="/addbaitap">Thêm mới</router-link></button></td>
+    <table class="animate__animated animate__fadeInTopLeft ">
         <tr>
         <th>Nội dung</th>
         <th>câu hỏi 1</th>
@@ -92,33 +92,9 @@ export default {
 </script>
 
 <style>
-  table {
-    width: 87%;
-    margin: 0 auto;
-  }
-  #customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 90%;
-  text-align: center;
-}
-
-#customers td, #customers th {
-  border: 1px solid rgb(232, 151, 252);
-  padding: 8px;
-  background-color: #dd98f8;
-}
-
-#customers tr:nth-child(even){background-color:  #dfbcf0;}
-
-#customers tr:hover {background-color:  #c85ef1;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #aa0ae9;
-  color: rgb(240, 218, 218);
+th, td {
+  border-bottom: 1px solid rgb(55, 52, 228);
+  padding: 5px;
 }
 .edit{
   background-color: rgb(110, 110, 253);

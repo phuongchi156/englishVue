@@ -2,7 +2,7 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Edit Question 
+        Sửa bài tập
       </h2>
 <b-jumbotron>
         <b-form @submit="onSubmit">
@@ -76,16 +76,16 @@
               v-model.trim="baitap.cap"
             ></b-form-input>
           </b-form-group>
-                    <b-form-group
+          <b-form-group
             id="fieldsetHorizontal"
             horizontal
             :label-cols="4"
             breakpoint="md"
             label="Nhập bài học liên quan"
           >
-            <b-form-input
-              v-model.trim="baitap.id_bh"
-            ></b-form-input>
+       <b-form-select v-model="baitap.id_bh">
+         <b-form-select-option v-for="item in lesson" :key="item.key" :value="item.key">{{item.name}}</b-form-select-option>
+       </b-form-select>
           </b-form-group>
           <b-button type="submit" variant="primary">Save</b-button>
         </b-form>
@@ -105,6 +105,9 @@ export default {
     return {
       key: this.$route.params.id,
       baitap: {},
+      name :{label: 'Tên bài học', sortable: true, 'class': 'text-center'},
+      lesson: [],
+      refL: firebase.firestore().collection('lesson'),
     }
   },
   created () {
@@ -116,13 +119,23 @@ export default {
         alert("No such document!");
       }
      });
-    // console.log('get id', question.cauhoi);
+
+      this.refL.onSnapshot((querySnapshot) => {
+      this.lesson = [];
+      querySnapshot.forEach((doc) => {
+        this.lesson.push({
+          key: doc.id,
+          name : doc.data().name,
+        });
+            
+      });
+    });
   },
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
       const updateRef = firebase.firestore().collection('baitap').doc(this.$route.params.id);
-      updateRef.set(this.question).then(() => {
+      updateRef.set(this.baitap).then(() => {
         this.key = ''
           this.baitap.noidung = "";
           this.baitap.ch1 = "";
@@ -137,7 +150,6 @@ export default {
       })
       .catch(() => {
         //alert("Error adding document: ", error);
-        console.log(this.question.id);
         router.push({ name: 'listbaitap'});
       });
     }
