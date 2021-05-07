@@ -1,41 +1,22 @@
 <template>
   <div id="app">
-    <div id="nav" >
+    <div id="nav" v-if="!showNav" >
       <router-link to="/home">Home</router-link> |
       <router-link to="/signin">Đăng nhập</router-link> |
       <router-link to="/signup">Đăng ký</router-link> |
+
+          <router-view/>
     </div>
     <div >
 
-      <!-- <div id="user">
-        <h1>user</h1>
+       <div id="user" v-if="showNav && !userProfile.permiss">
+        <User/>
       </div>
-      <div id="admin">
+      <div v-if="userProfile.permiss" id="admin">
         <h1>Admin</h1>
+        <Admin/>
       </div>
-    </div> -->
-            <!-- <div id="menu">
-  <ul>
-    <li><a href="/admin">Dashboard</a></li>
-    <li><a href="/userlist">Tài khoản</a>
-      <ul class="sub-menu">
-        <li><a href="/userlist">User</a></li>
-        <li><a href="/admin">Admin</a></li>
-        <li><a href="#">Hosting</a></li>
-      </ul>
-    </li>
-    <li><a href="/">Bài Học</a></li>
-    <li><a href="/listquestion">Câu hỏi</a></li>
-    <li><a href="/listdethi">Đề thi</a></li>
-    <li><a href="/">Bộ đề</a></li>
-    <li><a href="/">Kết quả</a></li>
-    <li><a href="/">Bài tập</a></li>
-    <li><a href="/">Phản hồi</a></li>
-    <li><a href="/">Tin mới</a></li>
-  </ul>
-            </div> -->
-    <router-view/>
-  </div>
+    </div> 
     <Footer /> 
   </div>
 </template>
@@ -45,14 +26,30 @@
 //import firebase from "firebase/app";
 //import firebase from '../firebase'
 import "firebase/auth";
-import Footer from "./views/Footer"
+import Footer from "./views/Footer";
+import Admin from './views/Admin';
+import User from './views/User';
+import { mapState } from 'vuex'
 export default {
 
   name: 'app',
   components:{
     //Upload
     Footer,
+    Admin,
+    User
   },
+  data(){
+    return{
+      admin: false,
+    }
+  },
+    computed: {
+    ...mapState(['userProfile']),
+    showNav() {
+      return Object.keys(this.userProfile).length > 1
+    }
+  }
   
 }
 </script>

@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import firebase from 'firebase/app';
+//import firebase from 'firebase/app';
 import router from '../router/index';
-import * as fb from '../firebase'
+import * as fb from '../firebase';
+//import firebase from '../firebase';
 //require('firebase/auth');
 
 Vue.use(Vuex)
@@ -22,17 +23,19 @@ export default new Vuex.Store({
       const { user } = await fb.auth.signInWithEmailAndPassword(form.Email, form.Password)
 
       // fetch user profile and set in state
+      console.log('user id login ', user.uid);
       dispatch('fetchUserProfile', user)
-      console.log("Đã nhận đăng nhập");
     },
     async fetchUserProfile({ commit }, user) {
       // fetch user profile
       //firebase.firestore().collection('users'),
-      const userProfile = await firebase.firestore().collection('users').doc(user.uid).get();
-
+      const userProfile = await fb.userCollections.doc(user.uid).get();
       // set user profile in state
       commit('setUserProfile', userProfile.data());
-      router.push('/listdethi ')
+      if(router.currentRoute.path ==='/signin'){
+        router.push('/')
+      }
+      
     },
 
     async signup({ dispatch }, form) {
@@ -40,12 +43,20 @@ export default new Vuex.Store({
       const { user} = await fb.auth.createUserWithEmailAndPassword(form.email, form.password)
     
       // create user profile object in userCollections
-      await firebase.firestore().collection('users').doc(user.uid).set({
-        email: form.email,
-        password: form.password
-      })
+      console.log('user id singup ',user.uid);
+      
+      await fb.userCollections.doc(user.uid).set(form);
+      
+      // await fb.userCollections.doc(user.uid).set({
+      //   email: form.email,
+      //   name : form.name,
+      //   username : form.username,
+      //   permiss : form.permiss,
+      //   address : form.address
+      // })
     
       // fetch user profile and set in state
+      //router.push('/');
       dispatch('fetchUserProfile', user)
     },
     async logout({ commit }) {
@@ -53,7 +64,7 @@ export default new Vuex.Store({
     
       // clear userProfile and redirect to /login
       commit('setUserProfile', {})
-      router.push('/login')
+      router.push('/')
     }
     
   }

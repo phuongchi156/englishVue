@@ -1,5 +1,5 @@
 <template>
-        <div id="menu">
+<div id="menu">
   <ul>
     <li><a href="/admin">Dashboard</a></li>
     <li><a href="/userlist">Tài khoản</a>

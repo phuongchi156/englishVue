@@ -33,28 +33,6 @@
               {{i.id_de}}
               {{i.id_question}}
             </div>
-            <!-- @*<div class="col-md-3 col-sm-3 col-xs-12">
-                    <div class="x_title">
-                        <h4>Thông tin đề bài</h4>
-                    </div>
-                    <ul class="list-unstyled project_files">
-                            <li>
-                                <i class="fa fa-file-word-o"></i> Mã đề: @Html.DisplayName(Model.Select(x=>x.MaDe).FirstOrDefault().ToString())
-                            </li>
-                            <li>
-                                <i class="fa fa-file-pdf-o"></i> Tên đề: @Html.DisplayName(Model.Select(x => x.DeThi.MoTa).FirstOrDefault().ToString())
-                            </li>
-                            <li>
-                                <i class="fa fa-mail-forward"></i> Môn thi: @Html.DisplayName(Model.Select(x => x.DeThi.MonThi.TenMon).FirstOrDefault().ToString())
-                            </li>
-                            <li>
-                                <i class="fa fa-picture-o"></i> Thời gian: @Html.DisplayName(Model.Select(x => x.DeThi.Time).FirstOrDefault().ToString()) phút
-                            </li>
-                            <li>
-                                <i class="fa fa-file-word-o"></i> Ngày tạo: @Html.DisplayName(Model.Select(x => x.DeThi.CreateDate).FirstOrDefault().ToString())
-
-                    </ul>
-                </div>*@ -->
         </div>
     </div>
 </div>

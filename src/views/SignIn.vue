@@ -16,7 +16,7 @@
     </button>
   </form>
       <form>
-    <span>Want to new?  <router-link to="/signout">Create an account</router-link></span>
+    <span>Want to new?  <router-link to="/signup">Create an account</router-link></span>
   </form>
 </div>
 

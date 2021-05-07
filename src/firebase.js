@@ -21,11 +21,13 @@ firebase.initializeApp(config);
 
 firebase.firestore().settings(settings);
 const auth = firebase.auth();
+const userCollections = firebase.firestore().collection('users');
 
 
 export default firebase;
 export{
-  auth
+  auth,
+  userCollections
 }
 
 

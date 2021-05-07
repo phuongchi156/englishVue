@@ -5,7 +5,7 @@
         User List
       </h2>
       <button class="detail"><b-link href="/useradd">Add User</b-link></button>
-      <table id="customers" class="animate__animated animate__slideInUp">
+      <table class="animate__animated animate__slideInUp">
         <tr>
         <th>Name</th>
         <th>Username</th>
@@ -83,32 +83,9 @@ export default {
 </script>
 
 <style>
-  table {
-    width: 87%;
-    margin: 0 auto;
-  }
-  #customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 90%;
-  text-align: center;
-}
-
-#customers td, #customers th {
-  border: 1px solid rgb(150, 173, 243);
-  padding: 8px;
-}
-
-#customers tr:nth-child(even){background-color: #9c9c9c;}
-
-#customers tr:hover {background-color: rgb(129, 126, 126);}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #817c85;
-  color: rgb(156, 155, 155);
+th, td {
+  border-bottom: 1px solid rgb(55, 52, 228);
+  padding: 5px;
 }
 .edit{
   background-color: rgb(110, 110, 253);

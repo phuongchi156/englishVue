@@ -45,13 +45,13 @@
           </a></li>
         <li class="list-inline-item"><a class="btn-floating btn-sm btn-tw mx-1" href="https://twitter.com/Kyo_Yumi" target="_blank">
       <md-button class="md-icon-button md-raised md-primary">
-        <md-icon><i class="fab fa-twitter"></i></md-icon>
+        <md-icon><i class="fa fa-twitter"></i></md-icon>
         
       </md-button>
           </a></li>
         <li class="list-inline-item"><a class="btn-floating btn-sm btn-li mx-1" href="#">
       <md-button class="md-icon-button md-raised md-accent">
-        <md-icon><i class="fab fa-linkedin-in"></i></md-icon>
+        <md-icon><i class="fa fa-linkedin-in"></i></md-icon>
       </md-button>
       </a></li>
       </ul>

@@ -38,17 +38,17 @@ const routes = [
     path: '/userlist',
     name: 'userlist',
     component: UserList,
-    meta: {
-      requiresAuth: true
-    }
+    // meta: {
+    //   requiresAuth: true
+    // }
   },
   {
     path: '/useradd',
     name: 'useradd',
     component: UserAdd,
-    meta: {
-      requiresAuth: true
-    }
+    // meta: {
+    //   requiresAuth: true
+    // }
   },
   {
     path: '/showuser/:id',
@@ -266,7 +266,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  //base: process.env.BASE_URL,
+  base: process.env.BASE_URL,
   routes
 })
 

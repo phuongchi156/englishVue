@@ -34,25 +34,27 @@
   <div>
     <b-button variant="primary" @click="doBaitap()">Let's do some exercises</b-button>
     <div v-if="showBaitap">
-    <div v-for="i in baitap" :key="i.key">
-      <div class="row">
+    <div>
+      <div class="row"  v-for="i in baitap" :key="i.key">
         <b-form>
           <p>{{i.noidung}}</p>
       <b-form-checkbox-group
-        v-model="selected"
-        name="flavour-2"
+        v-model="i.cap"
       >
-        <b-form-checkbox :value="i.ch1">{{i.ch1}}</b-form-checkbox>
-        <b-form-checkbox :value="i.ch2">{{i.ch2}}</b-form-checkbox>
-        <b-form-checkbox :value="i.ch3">{{i.ch3}}</b-form-checkbox>
-        <b-form-checkbox :value="i.ch4">{{i.ch4}}</b-form-checkbox>
+        <b-form-checkbox value="ch1">{{i.ch1}}</b-form-checkbox>
+        <b-form-checkbox value="ch2">{{i.ch2}}</b-form-checkbox>
+        <b-form-checkbox value="ch3">{{i.ch3}}</b-form-checkbox>
+        <b-form-checkbox value="ch4">{{i.ch4}}</b-form-checkbox>
       </b-form-checkbox-group>
-      <span v-if="showDapan">{{i.ketqua}}</span><br>
+      <div v-if="showDapan">
+        <span v-if="i.cap === i.ketqua" class="correct">Correct <i class="fa fa-check-circle"></i></span>
+        <span v-if="i.cap != i.ketqua" class="wrong">Wrong <i class="fa fa-times-circle"></i></span>
+      </div>
 
-        <b-button variant="primary" @click="showAnswer()">Show answer</b-button>
         <hr style="width:70%;height:3px;border-width:0;color:blueviolet;background-color:blueviolet">
         </b-form>
       </div>
+      <b-button variant="primary" @click="showAnswer()"><p>Check</p></b-button>
     </div>
     </div>
   </div>
@@ -68,9 +70,9 @@
     <hr style="width:100%;height:4px;border-width:0;color:blueviolet;background-color:blueviolet">
     <h3>Comments</h3>
      <hr style="width:50%;height:2px;border-width:0;color:violet;background-color:blueviolet;">
-    <div>
-      <h5>User name</h5>
-      <p>nội dung cmt</p><br>
+    <div v-for="item in phanhoi" :key="item.key">
+      <h5>{{item.id_user}}</h5>
+      <p>{{item.noidungC}}</p><br>
       <h5>User name</h5> 
       <p>nội dung cmt</p>
     </div>
@@ -94,7 +96,7 @@ export default {
   data () {
     return {
       showBaitap : false,
-      comment : "hi",
+      comment : "",
       showDapan : false,
       selected : '',
       baitap : [],
@@ -109,7 +111,11 @@ export default {
         ketqua :{label: 'Đáp án', sortable: true, 'class': 'text-left'},
         noidung: { label: 'Nội dung câu hỏi',sortable: true, 'class': 'text-center' },
       refLesson: firebase.firestore().collection('lesson'),
-      refBaitap : firebase.firestore().collection('baitap')
+      refBaitap : firebase.firestore().collection('baitap'),
+      refComment : firebase.firestore().collection('phanhoi'),
+      phanhoi :[],
+      id_user :'',
+      noidungC : '',
     }
   },
   created () {
@@ -121,15 +127,6 @@ export default {
         alert("No such document!");
       }
      });
-    // const refBaitap = firebase.firestore().collection('baitap').doc(this.$route.params.id);
-    // refBaitap.get().then((doc) => {
-    //   if (doc.exists) {
-    //    this.baitap = doc.data();
-    //   } else {
-    //     alert("No such document!");
-    //   }
-    //  });
-    console.log("id ",this.$route.params.id);
 
      this.refBaitap.onSnapshot((querySnapshot) => {
       this.baitap = [];
@@ -149,14 +146,24 @@ export default {
         }
       });
     });
+
+         this.refComment.onSnapshot((querySnapshot) => {
+      this.phanhoi = [];
+      querySnapshot.forEach((doc) => {
+        this.phanhoi.push({
+          key: doc.id,
+          noidungC : doc.data().noidung,
+          id_user : doc.data().id_user
+        });
+      });
+    });
   },
   methods:{
     doBaitap(){
       this.showBaitap = !this.showBaitap;
     },
     showAnswer(){
-      this.selected = this.baitap.ketqua;
-      this.showDapan = !this.showDapan;
+      this.showDapan =! this.showDapan;
       console.log("click");
     }
 
@@ -197,8 +204,15 @@ export default {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 100;
 }
-span{
+.wrong{
   color: red;
+  font-size: 15px;
+  font-family: cursive;
+  font-weight: 100;
+  margin-bottom: 15px;
+}
+.correct{
+  color: rgb(0, 255, 34);
   font-size: 15px;
   font-family: cursive;
   font-weight: 100;
