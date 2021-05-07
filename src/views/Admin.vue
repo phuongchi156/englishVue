@@ -1,71 +1,69 @@
 <template>
-<div id="menu">
-  <ul>
-    <li><a href="/admin">Dashboard</a></li>
-    <li><a href="/userlist">Tài khoản</a>
-      <ul class="sub-menu">
-        <li><a href="/userlist">User</a></li>
-        <li><a href="/admin">Admin</a></li>
-        <li><a href="#">Hosting</a></li>
-      </ul>
-    </li>
-    <li><a href="/">Bài Học</a></li>
-    <li><a href="/listquestion">Câu hỏi</a></li>
-    <li><a href="/listdethi">Đề thi</a></li>
-    <li><a href="/">Bộ đề</a></li>
-    <li><a href="/">Kết quả</a></li>
-    <li><a href="/">Bài tập</a></li>
-    <li><a href="/">Phản hồi</a></li>
-    <li><a href="/">Tin mới</a></li>
-  </ul>
-  <router-view></router-view>
-</div>
+    <div id="wrapper">
+        <nav>
+            <div class="navbar-header">
+                <router-link to="/admin" class="navbar-brand" >Quản Trị</router-link>
+            
 
+                    <a  @click="logout()"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a>
+            </div>
+            <hr>
+
+            <div class="sidebar" role="navigation">
+                    <ul>
+                        <li>
+                            <a href="/HocSinh/QLHocSinh">Danh Sách Học Sinh</a>
+                        </li>
+                        <li>
+                            <a href="/BaiHoc/QLBaiHoc">Danh Sách Bài Học</a>
+                        </li>
+                        <li>
+                            <a href="/DeThi/Index">Đề Kiểm Tra</a>
+                        </li>
+                        <li>
+                            <a href="/CauHoi/Index">Câu Hỏi</a>
+                        </li>
+                        <li>
+                            <a href="/KetQua/Index">Kết Quả</a>
+                        </li>
+                    </ul>
+            </div>
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+            </div>
+        </div>
+    </div> 
 </template>
+ 
+
 <script>
-//import route from '../router/index'
 export default {
-    
+  methods: {
+    logout(){
+      this.$store.dispatch('logout')
+    }
+  }
 }
 </script>
 
 <style>
-#menu ul {
-  background: #bd79e4;
-  width: 250px;
-  padding: 0;
-  list-style-type: none;
+#wrapper{
+  background-color: rgb(223, 129, 252);
+  color: aliceblue;
+}
+.navbar-header{
+  display: flex;
+   flex-direction: row-reverse;
+  flex-wrap: nowrap;
+
+}
+.sidebar{
+  display: flex;
+  flex-direction: column;
+  left: 0%;
   text-align: left;
-}
-#menu li {
-  width: auto;
-  height: 40px;
-  line-height: 40px;
-  border-bottom: 1px solid #e8e8e8;
-  padding: 0 1em;
-}
-#menu li a {
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  font-weight: bold;
-  display: block;
-}
-#menu li:hover {
-  background: #003ee9;
-}
 
-/*==Dropdown Menu==*/
-#menu ul li {
-  position: relative;
 }
-#menu .sub-menu {
-  position: absolute;
-  left: 250px;
-  top: 0;
-  display: none;
-}
-#menu li:hover .sub-menu {
-  display: block;
-}
-
 </style>

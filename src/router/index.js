@@ -19,11 +19,11 @@ const routes = [
     name: 'home',
     component: () => import('../views/Home.vue')
   },
-  {
-    path: '/home',
-    name: 'home',
-    component: () => import('../views/Home.vue')
-  },
+  // {
+  //   path: '/home',
+  //   name: 'home',
+  //   component: () => import('../views/Home.vue')
+  // },
   {
     path: '/signup',
     name: 'signup',
@@ -38,17 +38,17 @@ const routes = [
     path: '/userlist',
     name: 'userlist',
     component: UserList,
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/useradd',
     name: 'useradd',
     component: UserAdd,
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/showuser/:id',
@@ -97,46 +97,41 @@ const routes = [
     path: '/listdethi',
     name: 'listdethi',
     component: ListDeThi,
-    // meta: {
-    //   requiresAuth: true
-    // }
-  },
-  {
-    path: '/admin',
-    name: 'admin',
-    component : () => import("../views/Admin.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/adddethi',
     name: 'adddethi',
     component: () => import("../components/DeThi/AddDeThi.vue"),
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/editdethi/:id',
     name: 'editdethi',
     component: () => import("../components/DeThi/EditDeThi.vue"),
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path : '/dethidetail/:id',
     name : 'dethidetail',
     component : () => import("../components/DeThi/DeThiDetail.vue"),
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path : '/addquiz/:id',
     name : 'addquiz',
     component : () => import("../components/DeThi/AddQuiz.vue"),
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/listketqua',
@@ -150,17 +145,17 @@ const routes = [
     path: '/listbaitap',
     name: 'listbaitap',
     component: () => import("../components/BaiTap/ListBaiTap.vue"),
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/addbaitap',
     name: 'addbaitap',
     component: () => import("../components/BaiTap/AddBaiTap.vue"),
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/editbaitap/:id',
@@ -198,9 +193,9 @@ const routes = [
     path : '/listnew',
     name : 'listnew',
     component : () => import("../components/New/ListNew.vue"),
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path : '/addnew',
@@ -230,33 +225,49 @@ const routes = [
     path : '/lesson',
     name : 'lesson',
     component : () => import("../components/User/Baihoc/ListBaiHoc.vue"),
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path : '/lessondetail/:id',
     name : 'lessondetail',
     component : () => import("../components/User/Baihoc/LessonDetail.vue"),
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path : '/dotest/:id',
     name : 'dotest',
     component : () => import("../components/User/KiemTra/DoTest.vue"),
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path : '/listtest/',
     name : 'listtest',
     component : () => import("../components/User/KiemTra/ListTest.vue"),
-    // meta: {
-    //   requiresAuth: true
-    // }
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path : '/admin',
+    name : 'admin',
+    component : () => import("../views/AdminHome.vue"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path : '/profile',
+    name : 'profile',
+    component : () => import("../views/UserProfile.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
 ]
 

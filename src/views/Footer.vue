@@ -4,7 +4,8 @@
     <mdb-container class="text-left">
       <mdb-row>
         <mdb-col md="6">
-          <h5 class="text-uppercase mb-4 mt-3 font-weight-bold">English with C</h5>
+          <h5 class="text-uppercase mb-6 mt-4 font-weight-bold">English with C</h5><br>
+          <md-icon style="width: 155px; height=155px;"><img src="../assets/images/chill-removebg-preview.png"></md-icon>
           <p style="color: white;">Here you can learn english free! learn English every time every where just you want</p>
         </mdb-col>
         <hr class="clearfix w-100 d-md-none" />
