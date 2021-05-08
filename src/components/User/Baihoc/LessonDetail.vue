@@ -70,13 +70,17 @@
     <hr style="width:100%;height:4px;border-width:0;color:blueviolet;background-color:blueviolet">
     <h3>Comments</h3>
      <hr style="width:50%;height:2px;border-width:0;color:violet;background-color:blueviolet;">
-    <div v-for="item in phanhoi" :key="item.key">
-      <h5>{{item.id_user}}</h5>
+    <div v-for="item in phanhoi" :key="item.keyC">
+      <h5>{{item.username}}</h5>
       <p>{{item.noidungC}}</p><br>
-      <h5>User name</h5> 
-      <p>nội dung cmt</p>
     </div>
-    <mdb-input type="text" label="Enter your comment" bg size="sm" v-model="comment"/>
+      <b-input-group
+    prepend="Enter your comment">
+    <b-form-input v-model="comment"></b-form-input>
+    <b-input-group-append>
+      <b-button size="sm" text="Button" variant="success" @click="sendComment()">Comment</b-button>
+    </b-input-group-append>
+  </b-input-group>
   </div>
 
 
@@ -85,19 +89,16 @@
 
 <script>
 
-import firebase from '../../../firebase';
-import { mdbInput } from 'mdbvue';
+import firebase, { auth } from '../../../firebase';
 
 export default {
   name: 'lessondetail',
-  components: {
-      mdbInput
-  },
   data () {
     return {
       showBaitap : false,
       comment : "",
       showDapan : false,
+      name : '',
       selected : '',
       baitap : [],
       lesson: [],
@@ -113,9 +114,11 @@ export default {
       refLesson: firebase.firestore().collection('lesson'),
       refBaitap : firebase.firestore().collection('baitap'),
       refComment : firebase.firestore().collection('phanhoi'),
+      refUser : firebase.firestore().collection('users'),
       phanhoi :[],
       id_user :'',
       noidungC : '',
+      username : '',
     }
   },
   created () {
@@ -151,9 +154,10 @@ export default {
       this.phanhoi = [];
       querySnapshot.forEach((doc) => {
         this.phanhoi.push({
-          key: doc.id,
+          keyC: doc.id,
           noidungC : doc.data().noidung,
-          id_user : doc.data().id_user
+          id_user : doc.data().id_user,
+          username :doc.data().username
         });
       });
     });
@@ -165,6 +169,14 @@ export default {
     showAnswer(){
       this.showDapan =! this.showDapan;
       console.log("click");
+    },
+    sendComment(){
+      this.refComment.add({
+        noidung : this.comment,
+        username: this.$store.state.userProfile.name,
+        id_user : auth.currentUser.uid,
+      })
+      this.comment ="";
     }
 
   }
