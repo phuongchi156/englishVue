@@ -56,38 +56,6 @@
     </div>
 </div>
 
-
-
-
-
-
-
-<!-- <div>
-  <h1>Danh sách đề thi</h1>
-  <td><button class="box"><i class="fa fa-plus"></i><a href="/adddethi">Thêm mới</a></button></td>
-    <table class="animate__animated animate__fadeInTopLeft">
-        <tr>
-            <th>Mô tả</th>
-            <th>Ngày tạo</th>
-            <th>Số câu hỏi</th>
-            <th>Thời gian</th>
-            <th>Trạng thái</th>
-            <th>Xóa</th>
-            <th> Sửa</th>
-            <th>Chi tiết</th>
-        </tr>
-        <tr v-for="item in dethi" :key="item.key">
-            <th>{{item.mota}}</th>
-            <th>{{item.ngaytao}}</th>
-            <th>{{item.socauhoi}}</th>
-            <th>{{item.thoigian}}</th>
-            <th>{{item.trangthai}}</th>
-            <td><button class="delete" @click="delDethi(item.key)"><i class="fa fa-close"></i></button></td>
-          <td><button class="edit" @click="editDethi(item.key)"><i class="fa fa-edit"></i></button></td>
-          <td><b-button variant="outline-primary" @click="detail(item.key)">Chi tiết</b-button></td>
-        </tr>
-    </table>
-</div> -->
 </template>
 
 <script>
@@ -142,6 +110,9 @@ export default {
 </script>
 
 <style>
+table{
+  width: 90%;
+}
 th, td {
   border-bottom: 1px solid rgb(55, 52, 228);
   padding: 5px;

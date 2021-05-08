@@ -5,7 +5,7 @@
       <input placeholder="Nhập nội dung cần tìm" v-model="findValue"><button class="box" @click="Look()"><i class="fa fa-search"></i></button>
   </div>
   
-    <table id="customers" class="animate__animated animate__fadeInTopLeft">
+    <table class="animate__animated animate__fadeInTopLeft">
         <tr>
             <th>Điểm</th>
             <th>Người dùng</th>
@@ -86,30 +86,6 @@ export default {
     width: 87%;
     margin: 0 auto;
   }
-  #customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 90%;
-  text-align: center;
-}
-
-#customers td, #customers th {
-  border: 1px solid rgb(160, 183, 255);
-  padding: 8px;
-  background-color: #aa0ae9;
-}
-
-#customers tr:nth-child(even){background-color:  #c966f7;}
-
-#customers tr:hover {background-color:  #c63ffc;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #aa0ae9;
-  color: rgb(240, 218, 218);
-}
 .edit{
   background-color: rgb(110, 110, 253);
   border: none;

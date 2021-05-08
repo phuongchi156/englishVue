@@ -4,7 +4,7 @@
       <h2>
         Danh sách bài tập
       </h2>
-  <td><button class="box"><i class="fa fa-plus"></i><router-link to="/addbaitap">Thêm mới</router-link></button></td>
+  <button class="box"><i class="fa fa-plus"></i><router-link to="/addbaitap">Thêm mới</router-link></button>
     <table class="animate__animated animate__fadeInTopLeft ">
         <tr>
         <th>Nội dung</th>

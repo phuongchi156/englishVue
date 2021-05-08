@@ -2,8 +2,7 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Add EXams
-        <b-link href="/listlesson">Danh sách bài học</b-link>
+        Add Lesson
       </h2>
       <b-jumbotron class="animate__animated animate__slideInRight">
         <b-form @submit="onSubmit">

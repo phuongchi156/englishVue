@@ -3,7 +3,6 @@
     <b-col cols="12">
       <h2>
         Add Question
-        <b-link href="/listquestion">(Question List)</b-link>
       </h2>
       <b-jumbotron class="animate__animated animate__slideInRight">
         <b-form @submit="onSubmit">

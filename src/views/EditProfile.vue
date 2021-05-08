@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1>Profile</h1>
+  <h1>Edit Your Profile</h1>
   <div class="container emp-profile">
             <form method="post">
                 <div class="row">
@@ -25,9 +25,6 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                      <b-button @click="editProfile()" class="profile-edit-btn" variant="primary">Edit Profile</b-button>
-                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -39,34 +36,30 @@
                                             <div class="col-md-6">
                                                 <label>Username</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p>{{userProfile.username}}</p>
+                                            <div class="col-md-9">
+                                                <input v-model="username" :placeholder="userProfile.username">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Name</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p>{{userProfile.name}}</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>{{userProfile.email}}</p>
+                                            <div class="col-md-9">
+                                                <input class="w3-input w3-border w3-round" v-model="name" :placeholder="userProfile.name">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Address</label>
                                             </div>
-                                            <div class="col-md-6">
-                                                <p>{{userProfile.address}}</p>
+                                            <div class="col-md-9">
+                                                <input v-model="address" :placeholder="userProfile.address">
                                             </div>
                                         </div>
+                                        <br>  
+                        <div class="col-md-9">
+                      <b-button @click="updateProfile()" class="profile-edit-btn" variant="success">Update Profile</b-button>
+                    </div>
                             </div>
                         </div>
                     </div>
@@ -86,8 +79,8 @@ export default {
     return {
       name: '',
       address: '',
+      showSuccess: false,
       avatar : '',
-      email : '',
       username : '',
     }
   },
@@ -95,8 +88,24 @@ export default {
     ...mapState(['userProfile']),
   },
   methods:{
-    editProfile(){
-        router.push('/editprofile');
+    updateProfile(){
+        this.$store.dispatch('updateProfile', {
+      name: this.name !== '' ? this.name : this.userProfile.name,
+      address: this.address !== '' ? this.address : this.userProfile.address,
+      username: this.username !== '' ? this.username : this.userProfile.username,
+      avatar: this.avatar !== '' ? this.avatar : this.userProfile.avatar,
+  })
+
+  this.name = ''
+  this.address = ''
+  this.username = ''
+  this.avatar = ''
+
+  this.showSuccess = true
+
+  setTimeout(() => {
+    router.push('/profile');
+  }, 1000)
     }
   }
 }
@@ -142,7 +151,7 @@ export default {
 .profile-edit-btn{
     border: none;
     border-radius: 1.5rem;
-    width: 70%;
+    width: 100%;
     padding: 2%;
     font-weight: 600;
     color: #6c757d;
@@ -195,4 +204,11 @@ export default {
     font-weight: 600;
     color: #0062cc;
 }
+.profile-tab input{
+    border: none;
+  border-bottom: 2px solid rgb(162, 0, 255);
+  height: 35px;
+  width: 250px;
+}
+
 </style>

@@ -83,6 +83,10 @@ export default {
 </script>
 
 <style>
+table{
+  width: 80%;
+  margin-left: 130px;
+}
 th, td {
   border-bottom: 1px solid rgb(55, 52, 228);
   padding: 5px;

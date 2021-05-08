@@ -19,11 +19,11 @@ const routes = [
     name: 'home',
     component: () => import('../views/Home.vue')
   },
-  // {
-  //   path: '/home',
-  //   name: 'home',
-  //   component: () => import('../views/Home.vue')
-  // },
+  {
+    path: '/home',
+    name: 'home',
+    component: () => import('../views/Home.vue')
+  },
   {
     path: '/signup',
     name: 'signup',
@@ -265,6 +265,22 @@ const routes = [
     path : '/profile',
     name : 'profile',
     component : () => import("../views/UserProfile.vue"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path : '/editprofile',
+    name : 'editprofile',
+    component : () => import("../views/EditProfile.vue"),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path : '/listcomment',
+    name : 'listcomment',
+    component : () => import("../components/PhanHoi/ListComment.vue"),
     meta: {
       requiresAuth: true
     }

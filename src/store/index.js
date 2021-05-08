@@ -23,8 +23,7 @@ export default new Vuex.Store({
       const { user } = await fb.auth.signInWithEmailAndPassword(form.Email, form.Password)
 
       // fetch user profile and set in state
-      console.log('user id login ', user.uid);
-      dispatch('fetchUserProfile', user)
+      dispatch('fetchUserProfile', user);
     },
     async fetchUserProfile({ commit }, user) {
       // fetch user profile
@@ -65,6 +64,35 @@ export default new Vuex.Store({
       // clear userProfile and redirect to /login
       commit('setUserProfile', {})
       router.push('/')
+    },
+
+    async updateProfile({ dispatch }, user) {
+      const userId = fb.auth.currentUser.uid
+      // update user object
+      await fb.userCollections.doc(userId).update({
+        name: user.name,
+        username: user.username,
+        address : user.address,
+        avatar : user.avatar
+      })
+    
+      dispatch('fetchUserProfile', { uid: userId })
+    
+      // update all posts by user
+      // const postDocs = await fb..where('userId', '==', userId).get()
+      // postDocs.forEach(doc => {
+      //   fb.postsCollection.doc(doc.id).update({
+      //     userName: user.name
+      //   })
+      // })
+    
+      // update all comments by user
+      // const commentDocs = await fb.commentsCollection.where('userId', '==', userId).get()
+      // commentDocs.forEach(doc => {
+      //   fb.commentsCollection.doc(doc.id).update({
+      //     userName: user.name
+      //   })
+      // })
     }
     
   }

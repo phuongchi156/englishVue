@@ -2,8 +2,7 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Edit User
-        <b-link href="/userlist">(User List)</b-link>
+        User Detail <br>
       </h2>
       <b-jumbotron>
         <template slot="header">
@@ -11,13 +10,16 @@
         </template>
         <template slot="lead">
           name: {{user.name}}<br>
+          <hr style="width:50%;height:1px;border-width:0;background-color:blueviolet;">
           username: {{user.username}}<br>
+          <hr style="width:50%;height:1px;border-width:0;background-color:blueviolet;">
           email: {{user.email}}<br>
+          <hr style="width:50%;height:1px;border-width:0;background-color:blueviolet;">
           address: {{user.address}}<br>
+          <hr style="width:50%;height:1px;border-width:0;background-color:blueviolet;">
         </template>
         <hr class="my-4">
         <b-btn class="edit-btn" variant="success" @click.stop="edituser(key)">Edit</b-btn>
-        <b-btn variant="danger" @click.stop="delUser(key)">Delete</b-btn>
       </b-jumbotron>
     </b-col>
   </b-row>

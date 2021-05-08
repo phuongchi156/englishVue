@@ -2,29 +2,27 @@
   <b-row>
     <b-col cols="12">
       <h2>
-        Question List
+        Question Comment
       </h2>
-      <button class="box"><i class="fa fa-plus"></i><router-link to="/addquestion">Thêm mới</router-link></button>
+      <!-- <button class="box"><i class="fa fa-plus"></i><router-link to="/addquestion">Thêm mới</router-link></button> -->
       <table class="animate__animated animate__fadeInTopLeft">
         <tr>
-        <th>A</th>
-        <th>B</th>
-        <th>C</th>
-        <th>D</th>
-        <th>Đáp án</th>
-        <th>Câu hỏi</th>
+        <th>Id_user</th>
+        <th>username</th>
+        <th>Comment</th>
+
         <th>Delete</th>
-        <th>Edit</th>
+                <th>Status</th>
+
         </tr>
-        <tr v-for="item in questions" v-bind:key="item.key">
-          <td>{{item.A}}</td>
-          <td>{{item.B}}</td>
-          <td>{{item.C}}</td>
-          <td>{{item.D}}</td>
-          <td>{{item.answer}}</td>
-          <td>{{item.cauhoi}}</td>
+        <tr v-for="item in phanhoi" v-bind:key="item.key">
+          <td>{{item.id_user}}</td>
+          <td>{{item.username}}</td>
+          <td>{{item.comment}}</td>
           <td><button class="delete" @click="delQuestion(item.key)"><i class="fa fa-close"></i></button></td>
-          <td><button class="edit" @click="editQuestion(item.key)"><i class="fa fa-edit"></i></button></td>
+          <td>  <b-button v-if="check" @click="Seen()" variant="outline-success">Seen</b-button>
+  <b-button v-if="!check" @click="Seen()" variant="outline-danger">Not seen</b-button></td>
+ 
         </tr>
       </table>
       
@@ -35,49 +33,43 @@
 <script>
 
 import firebase from '../../firebase'
-import router from '../../router/index'
 
 export default {
   name: 'questionlist',
   data () {
     return {
-        A: { label: 'A', sortable: true, 'class': 'text-left' },
-        B :{label: 'B', sortable: true, 'class': 'text-left'},
-        C :{label: 'C', sortable: true, 'class': 'text-left'},
-        D :{label: 'D', sortable: true, 'class': 'text-left'},
-        answer :{label: 'Answer', sortable: true, 'class': 'text-left'},
-        cauhoi :{label: 'Câu hỏi', sortable: true, 'class': 'text-left'},
-        actions: { label: 'Action', 'class': 'text-center' },
-        questions: [],
+        check : false,
+        comment: '',
+        id_user: '',
+        username: '',
+        
+        phanhoi: [],
       errors: [],
-      ref: firebase.firestore().collection('questions'),
+      ref: firebase.firestore().collection('phanhoi'),
     }
   },
   created () {
     this.ref.onSnapshot((querySnapshot) => {
-      this.questions = [];
+      this.phanhoi = [];
       querySnapshot.forEach((doc) => {
-        this.questions.push({
+        this.phanhoi.push({
           key: doc.id,
-          A: doc.data().A,
-          B : doc.data().B,
-          C : doc.data().C,
-          D : doc.data().D,
-          answer : doc.data().answer,
-          cauhoi : doc.data().cauhoi
+          id_user: doc.data().id_user,
+          username : doc.data().username,
+          comment : doc.data().noidung,
         });
       });
     });
   },
   methods: {
-    editQuestion(key) {
-      router.push({ name: 'editquestion', params: { id: key}})
-    },
      delQuestion(key){
       this.ref.doc(key).delete().then(() => {
         alert('Đã xóa thành công'),
         console.log('delete', key)
       }).catch((error) => {alert("Error removing:", error);});
+    },
+    Seen(){
+      this.check = !this.check;
     }
 
   }

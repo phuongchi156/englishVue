@@ -1,7 +1,7 @@
 <template>
 <div>
   <h1>Danh sách bài học</h1>
-  <td><button class="box"><i class="fa fa-plus"></i><a href="/addlesson">Thêm mới</a></button></td>
+  <button class="box"><i class="fa fa-plus"></i><a href="/addlesson">Thêm mới</a></button>
     <table class="animate__animated animate__fadeInTopLeft">
         <tr>
             <th>Chi tiết</th>
