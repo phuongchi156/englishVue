@@ -71,8 +71,12 @@
     <h3>Comments</h3>
      <hr style="width:50%;height:2px;border-width:0;color:violet;background-color:blueviolet;">
     <div v-for="item in phanhoi" :key="item.keyC">
+      <div id="usercomment">
       <h5>{{item.username}}</h5>
-      <p>{{item.noidungC}}</p><br>
+      <p>{{item.noidungC}}</p>
+      <i v-if="!item.status" id="commentWait" class="fa fa-heart"></i>
+      <i v-if="item.status" id="commentCheck" class="fa fa-heart"></i>
+      </div><br>
     </div>
       <b-input-group
     prepend="Enter your comment">
@@ -98,7 +102,9 @@ export default {
       showBaitap : false,
       comment : "",
       showDapan : false,
+      status: '',
       name : '',
+      avatar: '',
       selected : '',
       baitap : [],
       lesson: [],
@@ -157,7 +163,8 @@ export default {
           keyC: doc.id,
           noidungC : doc.data().noidung,
           id_user : doc.data().id_user,
-          username :doc.data().username
+          username :doc.data().username,
+          status : doc.data().status,
         });
       });
     });
@@ -175,6 +182,7 @@ export default {
         noidung : this.comment,
         username: this.$store.state.userProfile.name,
         id_user : auth.currentUser.uid,
+        status : false,
       })
       this.comment ="";
     }
@@ -244,5 +252,25 @@ export default {
   color: blue;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
   text-align: center;
+}
+#usercomment{
+  background-color: aliceblue;
+  margin-left: 3px;
+  padding: 6px 2px 2px 5px;
+  border-radius: 20px;
+  margin-right: 6px;
+  width: 80%;
+}
+#commentCheck{
+  float: right;
+  color: red;
+  margin: 3px 7px 7px 12px;
+
+}
+#commentWait{
+  float: right;
+  color: blue;
+  position: relative;
+  margin: 3px 7px 7px 12px;
 }
 </style>

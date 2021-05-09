@@ -20,9 +20,10 @@
           <td>{{item.username}}</td>
           <td>{{item.comment}}</td>
           <td><button class="delete" @click="delQuestion(item.key)"><i class="fa fa-close"></i></button></td>
-          <td>  <b-button v-if="check" @click="Seen()" variant="outline-success">Seen</b-button>
-  <b-button v-if="!check" @click="Seen()" variant="outline-danger">Not seen</b-button></td>
- 
+       <td>
+      <b-button v-if="item.status" @click="Seen(item.key)" variant="outline-success">Seen</b-button>
+      <b-button v-if="!item.status" @click="Seen(item.key)" variant="outline-danger">Status false</b-button>
+ </td>
         </tr>
       </table>
       
@@ -32,17 +33,16 @@
 
 <script>
 
-import firebase from '../../firebase'
-
+import firebase from '../../firebase';
+import router from '../../router';
 export default {
   name: 'questionlist',
   data () {
     return {
-        check : false,
         comment: '',
         id_user: '',
         username: '',
-        
+        status : '',
         phanhoi: [],
       errors: [],
       ref: firebase.firestore().collection('phanhoi'),
@@ -57,6 +57,7 @@ export default {
           id_user: doc.data().id_user,
           username : doc.data().username,
           comment : doc.data().noidung,
+          status : doc.data().status,
         });
       });
     });
@@ -68,9 +69,9 @@ export default {
         console.log('delete', key)
       }).catch((error) => {alert("Error removing:", error);});
     },
-    Seen(){
-      this.check = !this.check;
-    }
+    Seen(key){
+      router.push({ name: 'seencomment', params: { id: key}})
+    },
 
   }
 }

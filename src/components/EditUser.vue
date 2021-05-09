@@ -39,6 +39,13 @@
                     label="Enter address">
             <b-form-input id="address" v-model.trim="user.address"></b-form-input>
           </b-form-group>
+           <b-form-group id="fieldsetHorizontal"
+                    horizontal
+                    :label-cols="4"
+                    breakpoint="md"
+                    label="Permiss">
+            <b-form-select v-model="user.permiss" :options="options"></b-form-select>
+          </b-form-group>
           <b-button type="submit" variant="primary">Update</b-button>
         </b-form>
       </b-jumbotron>
@@ -57,7 +64,11 @@ export default {
   data () {
     return {
       key: this.$route.params.id,
-      user: {}
+      user: {},
+      options: [
+        {value: true, text:' Admin'},
+        {value: false, text:' User'}
+      ]
     }
   },
   created () {
@@ -83,8 +94,8 @@ export default {
         console.log(docRef.id)
         router.push({ name: 'showuser', params: { id: this.$route.params.id }})
       })
-      .catch((error) => {
-        alert("Error adding document: ", error);
+      .catch(() => {
+        router.push({ name: 'showuser', params: { id: this.$route.params.id }})
       });
     }
   }

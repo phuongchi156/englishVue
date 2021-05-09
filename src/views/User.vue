@@ -8,8 +8,8 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <b-nav-item href="">Home</b-nav-item>
-        <b-nav-item><router-link to="/lesson" style="color: rgb(0, 0, 0);">Danh sách bài học</router-link></b-nav-item>
+        <b-nav-item > <router-link to="/" style="color: #ffff;"> Home</router-link></b-nav-item>
+        <b-nav-item><router-link to="/lesson" style="color: #ffff;">Danh sách bài học</router-link></b-nav-item>
 
       </b-navbar-nav>
 
@@ -29,8 +29,8 @@
         <b-nav-item-dropdown right>
           <!-- Using 'button-content' slot -->
           <template #button-content>
-            <i class="fa fa-user"></i>
-            <em>User</em>
+            <i style="color: #ffff" class="fa fa-user"></i>
+            <em style="color: #ffff;text-decoration-line: none; ">User</em>
           </template>
           <b-dropdown-item><router-link to="/profile">Profile</router-link></b-dropdown-item>
           <b-dropdown-item><a @click="logout()">Logout</a></b-dropdown-item>

@@ -69,6 +69,7 @@ export default {
           username : '',
           address : "",
           permiss : false,
+          avatar : 'https://images.clipartlogo.com/files/istock/previews/1026/102672691-animal-emotion-avatar-vector-icon.jpg',
       },
        ref: firebase.firestore().collection('users'),
     };
@@ -81,7 +82,8 @@ export default {
         name: this.signupForm.name,
         username : this.signupForm.username,
         addredd : this.signupForm.address,
-        permiss : this.signupForm.permiss
+        permiss : this.signupForm.permiss,
+        avatar : this.signupForm.avatar
       });
 
       //   this.ref.add(this.user).then((docRef) => {

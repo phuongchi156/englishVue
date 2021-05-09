@@ -17,6 +17,9 @@
           <hr style="width:50%;height:1px;border-width:0;background-color:blueviolet;">
           address: {{user.address}}<br>
           <hr style="width:50%;height:1px;border-width:0;background-color:blueviolet;">
+          <p v-if="user.permiss">Admin</p>
+          <p v-if="!user.permiss">User</p>
+          <hr style="width:50%;height:1px;border-width:0;background-color:blueviolet;">
         </template>
         <hr class="my-4">
         <b-btn class="edit-btn" variant="success" @click.stop="edituser(key)">Edit</b-btn>

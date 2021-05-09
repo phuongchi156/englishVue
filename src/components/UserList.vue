@@ -11,6 +11,7 @@
         <th>Username</th>
         <th>Email</th>
         <th>Address</th>
+        <th>Permiss</th>
         <th> Delete</th>
         <th>Edit</th>
         <th>Detail</th>
@@ -20,6 +21,8 @@
           <td>{{item.username}}</td>
           <td>{{item.email}}</td>
           <td>{{item.address}}</td>
+          <td><p v-if="item.permiss">Admin</p>
+          <p v-if="!item.permiss">User</p></td>
           <td><button class="delete" v-on:click="delUser(item.key)"><i class="fa fa-close"></i></button></td>
           <td><button class="edit" @click="editUser(item.key)"><i class="fa fa-edit"></i></button></td>
           <td><button class="detail" @click="details(item.key)"><i class="fa fa-info"></i></button></td>
@@ -42,6 +45,7 @@ export default {
         username :{label: 'Username', sortable: true, 'class': 'text-left'},
         email :{label: 'Email', sortable: true, 'class': 'text-left'},
         address :{label: 'Address', sortable: true, 'class': 'text-left'},
+        permiss :'',
         actions: { label: 'Action', 'class': 'text-center' },
       users: [],
       errors: [],
@@ -58,6 +62,7 @@ export default {
           username : doc.data().username,
           email : doc.data().email,
           address : doc.data().address,
+          permiss : doc.data().permiss,
         });
       });
     });

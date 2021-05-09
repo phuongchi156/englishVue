@@ -285,6 +285,14 @@ const routes = [
       requiresAuth: true
     }
   },
+  {
+    path : '/seencomment/:id',
+    name : 'seencomment',
+    component : () => import("../components/PhanHoi/SeenComment.vue"),
+    meta: {
+      requiresAuth: true
+    }
+  },
 ]
 
 // const router = new VueRouter({

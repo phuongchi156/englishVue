@@ -73,6 +73,7 @@ export default {
           username : '',
           address : "",
           permiss : '',
+          avatar :'',
       },
        ref: firebase.firestore().collection('users'),
       //user: {}
@@ -81,13 +82,20 @@ export default {
   methods: {
     onSubmit (evt) {
       evt.preventDefault()
+      if(this.signupForm.permiss){
+        this.signupForm.avatar = "../assets/images/chill-removebg-preview.png";
+      }
+      else{
+        this.signupForm.avatar = "https://images.clipartlogo.com/files/istock/previews/1026/102672691-animal-emotion-avatar-vector-icon.jpg";
+      }
       this.$store.dispatch("signup", {
         email: this.signupForm.email,
         password: this.signupForm.password,
         name: this.signupForm.name,
         username : this.signupForm.username,
         addredd : this.signupForm.address,
-        permiss : this.signupForm.permiss
+        permiss : this.signupForm.permiss,
+        avatar : this.signupForm.avatar,
       });
 
       // this.ref.add(this.user).then((docRef) => {
