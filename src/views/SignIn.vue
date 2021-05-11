@@ -7,7 +7,7 @@
       <form @submit.prevent >
 
     <input type="text"  placeholder="Email" v-model.trim="loginForm.Email"/><br>
-     <router-link to="/signout">Forgot password?</router-link>
+     <router-link to="/resetpassword">Forgot password?</router-link>
 
 
     <input type="password" placeholder="Password" v-model.trim="loginForm.Password"/> <br>

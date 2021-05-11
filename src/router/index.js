@@ -293,6 +293,11 @@ const routes = [
       requiresAuth: true
     }
   },
+  {
+    path : '/resetpassword',
+    name : 'resetpassword',
+    component : () => import("../components/ResetPassword.vue"),
+  },
 ]
 
 // const router = new VueRouter({
