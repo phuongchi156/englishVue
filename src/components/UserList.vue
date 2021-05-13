@@ -4,7 +4,7 @@
       <h2>
         User List
       </h2>
-      <button class="detail"><b-link href="/useradd">Add User</b-link></button>
+      <button class="detail"><router-link to="/useradd">Add User</router-link></button>
       <table class="animate__animated animate__slideInUp">
         <tr>
         <th>Name</th>

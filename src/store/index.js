@@ -20,10 +20,15 @@ export default new Vuex.Store({
   actions: {
     async login({ dispatch }, form) {
       // sign user in
-      const { user } = await fb.auth.signInWithEmailAndPassword(form.Email, form.Password)
+      try{
+        const { user } = await fb.auth.signInWithEmailAndPassword(form.Email, form.Password)
+        dispatch('fetchUserProfile', user);
+      } catch(err){
+        alert(err);
+      } 
 
       // fetch user profile and set in state
-      dispatch('fetchUserProfile', user);
+      
     },
     async fetchUserProfile({ commit }, user) {
       // fetch user profile
@@ -55,7 +60,7 @@ export default new Vuex.Store({
       // })
     
       // fetch user profile and set in state
-      //router.push('/');
+      router.push('/');
       dispatch('fetchUserProfile', user)
     },
     async logout({ commit }) {

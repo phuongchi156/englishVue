@@ -8,9 +8,8 @@
 
     <input type="text"  placeholder="Email" v-model.trim="loginForm.Email"/><br>
      <router-link to="/resetpassword">Forgot password?</router-link>
-
-
-    <input type="password" placeholder="Password" v-model.trim="loginForm.Password"/> <br>
+     
+     <input :type="[showPassword ? 'password' : 'text']" placeholder="Password" v-model.trim="loginForm.Password"/><i @click="showPassword = !showPassword" class="fa" :class="[showPassword ? 'fa-eye' : 'fa-eye-slash']" aria-hidden="true"></i> <br>
     <button class="button" @click="login()" >
       Login
     </button>
@@ -34,6 +33,7 @@ export default {
         Email: "",
         Password: "",
       },
+      showPassword: true,
     };
   },
   methods: {

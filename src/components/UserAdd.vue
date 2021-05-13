@@ -72,7 +72,7 @@ export default {
           name : '',
           username : '',
           address : "",
-          permiss : '',
+          permiss : false,
           avatar :'',
       },
        ref: firebase.firestore().collection('users'),
@@ -97,15 +97,6 @@ export default {
         permiss : this.signupForm.permiss,
         avatar : this.signupForm.avatar,
       });
-
-      // this.ref.add(this.user).then((docRef) => {
-      //   this.user.name = ''
-      //   this.user.username = ''
-      //   this.user.Email = ''
-      //   this.user.address = ''
-      //   this.user.permiss = ''
-      //   this.user.password = '123456'
-      //   console.log(docRef.id)
       router.push({
           name: 'userlist'
         });
