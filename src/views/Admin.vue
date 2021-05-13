@@ -20,6 +20,7 @@
   <router-link style="color:white;" to="/listlesson">List Lesson</router-link>
   <router-link style="color:white;" to="/listbaitap">List Exercise</router-link>
   <router-link style="color:white;" to="/listcomment">List Comment</router-link>
+  <router-link style="color:white;" to="/listnew">List New</router-link>
   <router-link style="color:white;" to="/listquestion">List Question</router-link>
   <router-link style="color:white;" to="/listdethi">List Contest</router-link>
   <router-link style="color:white;" to="/listketqua">List Result</router-link>

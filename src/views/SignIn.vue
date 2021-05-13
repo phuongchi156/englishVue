@@ -23,9 +23,7 @@
 </template>
 
 <script>
-import firebase from "firebase/app";
 import "firebase/auth";
-firebase.firestore().enablePersistence();
 export default {
     data() {
     return {

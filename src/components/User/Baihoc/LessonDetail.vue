@@ -54,7 +54,7 @@
         <hr style="width:70%;height:3px;border-width:0;color:blueviolet;background-color:blueviolet">
         </b-form>
       </div>
-      <b-button variant="primary" @click="showAnswer()"><p>Check</p></b-button>
+      <b-button variant="primary" @click="showAnswer()">Check</b-button>
     </div>
     </div>
   </div>
