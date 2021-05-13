@@ -81,7 +81,7 @@ export default {
         password: this.signupForm.password,
         name: this.signupForm.name,
         username : this.signupForm.username,
-        addredd : this.signupForm.address,
+        address : this.signupForm.address,
         permiss : this.signupForm.permiss,
         avatar : this.signupForm.avatar
       });
