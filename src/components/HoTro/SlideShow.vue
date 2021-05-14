@@ -7,7 +7,7 @@
         <img :src="currentImg" />
       </div>
     </transition-group>
-    <span>{{currentText}}</span>
+    <span id="span">{{currentText}}</span>
     <a class="prev" @click="prev" href="#">&#10094; Previous</a>
     <a class="next" @click="next" href="#">&#10095; Next</a>
   </div>
@@ -116,7 +116,7 @@ h1{
   color: blueviolet;
   font-family: fantasy;
 }
-span{
+#span{
   color: black;
   font-family: cursive;
   background-color: aliceblue;

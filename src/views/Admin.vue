@@ -3,7 +3,7 @@
         <nav>
   <mdb-navbar color="default" dark class="justify-content-between">
     <mdb-navbar-brand  href="/admin">
-    <span style="font-size:30px;cursor:pointer; display: left; color: black" @click="openNav()">&#9776;</span>
+    <p style="font-size:30px;cursor:pointer; display: left; color: black" @click="openNav()">&#9776;</p>
      |  | <md-icon style="border: 2px solid rgb(189, 43, 226);border-radius: 50px;  width: 55px; height: 55px;"> <img src="../assets/images/chill-removebg-preview.png"></md-icon>
     </mdb-navbar-brand>
     <mdb-form-inline id="icon">
