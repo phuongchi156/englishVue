@@ -44,24 +44,30 @@ export default new Vuex.Store({
 
     async signup({ dispatch }, form) {
       // sign user up
-      const { user} = await fb.auth.createUserWithEmailAndPassword(form.email, form.password)
+      try{
+        const { user} = await fb.auth.createUserWithEmailAndPassword(form.email, form.password)
     
-      // create user profile object in userCollections
-      console.log('user id singup ',user.uid);
+        // create user profile object in userCollections
+        console.log('user id singup ',user.uid);
+        
+        await fb.userCollections.doc(user.uid).set(form);
+        
+        // await fb.userCollections.doc(user.uid).set({
+        //   email: form.email,
+        //   name : form.name,
+        //   username : form.username,
+        //   permiss : form.permiss,
+        //   address : form.address
+        // })
       
-      await fb.userCollections.doc(user.uid).set(form);
-      
-      // await fb.userCollections.doc(user.uid).set({
-      //   email: form.email,
-      //   name : form.name,
-      //   username : form.username,
-      //   permiss : form.permiss,
-      //   address : form.address
-      // })
-    
-      // fetch user profile and set in state
-      router.push('/');
-      dispatch('fetchUserProfile', user)
+        // fetch user profile and set in state
+        router.push('/');
+        dispatch('fetchUserProfile', user)
+
+      }catch(err){
+        alert(err);
+      }
+
     },
     async logout({ commit }) {
       await fb.auth.signOut()

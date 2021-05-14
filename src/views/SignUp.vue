@@ -39,6 +39,7 @@
             <b-form-input  v-model.trim="signupForm.password"
           type="password"
           id="password2" placeholder="********"></b-form-input>
+          <span :class="has_minimum_lenth ? 'has_required' : ''"></span>
           </b-form-group>
            <b-form-group
                     horizontal
@@ -71,8 +72,15 @@ export default {
           permiss : false,
           avatar : 'https://images.clipartlogo.com/files/istock/previews/1026/102672691-animal-emotion-avatar-vector-icon.jpg',
       },
+      has_minimum_lenth: false,
        ref: firebase.firestore().collection('users'),
     };
+  },
+  watch:{
+    password(){
+      this.has_minimum_lenth =(this.signupForm.password.length >8);
+    }
+
   },
   methods: {
     signup() {
